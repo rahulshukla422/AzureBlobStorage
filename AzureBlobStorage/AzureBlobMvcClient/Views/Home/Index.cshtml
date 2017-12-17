@@ -1,0 +1,30 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+@Html.ActionLink("Upload Files", "Upload", null, new { @class = "btn btn-info" })
+<br /><br />
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model.OrderByDescending(x => x))
+        {
+
+            <div class="col-md-4">
+                <img src="@item" class="img-responsive" width="250" height="200" /><br />
+                @Html.ActionLink("Download", "Download", new { path = Path.GetFileName(item) }, new { @class = "btn btn-success" })
+
+                @Html.ActionLink("Delete", "Delete", new { path = Path.GetFileName(item) }, new { @class = "btn btn-danger" })
+                <br />
+            </div>
+            @*<div class="col-md-2">
+                    @Html.ActionLink("Download", "Download", new { path = Path.GetFileName(item) }, new { @class = "btn btn-success" })
+
+                    @Html.ActionLink("Delete", "Delete", new { path = Path.GetFileName(item) }, new { @class = "btn btn-danger" })
+                </div>
+            *@
+
+        }
+    </div>
+</div>
